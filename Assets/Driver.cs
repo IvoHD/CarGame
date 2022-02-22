@@ -25,9 +25,11 @@ public class Driver : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Package").Length == 0 && !GetComponent<Collision>().hasPackage) {
             Debug.Log("Nice, you won the Game!");
         }
-        if (Input.GetAxis("Vertical") != 0) SteerAmount = Input.GetAxis("Horizontal") * SteerSpeed * Time.deltaTime;
-        else SteerAmount = 0;
+
         MoveAmount = Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime;
+        SteerAmount = 0;                        //Stops spinning after stop
+        if (Input.GetAxis("Vertical") != 0)     //if car isn't sta
+            SteerAmount = Input.GetAxis("Horizontal") * SteerSpeed * Time.deltaTime;
 
         transform.Translate(0, MoveAmount, 0);
         transform.Rotate(0, 0, -SteerAmount);

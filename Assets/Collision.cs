@@ -8,6 +8,7 @@ public class Collision : MonoBehaviour
 
     [SerializeField] Color32 HasPackageColor = new Color32(255, 0, 0, 255);
     [SerializeField] Color32 DefaultColor = new Color32(255, 255, 255, 255);
+    
 
     SpriteRenderer Sprite;
 

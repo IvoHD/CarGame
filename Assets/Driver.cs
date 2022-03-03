@@ -9,11 +9,15 @@ public class Driver : MonoBehaviour
     [SerializeField] float MoveSpeed = 10.5f;
     [SerializeField] float SlowSpeed = 7.5f;
     [SerializeField] float BoostSpeed = 18.5f;
-    float AffectedTimer = 0;
-    bool Affected;
     float SteerAmount;
     float MoveAmount;
+
+    float AffectedTimer = 0;
+    bool Affected;
     bool Boost; //false = bumped
+
+    [SerializeField] ParticleSystem HouseExplosionEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +32,7 @@ public class Driver : MonoBehaviour
 
         MoveAmount = Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime;
         SteerAmount = 0;                        //Stops spinning after stop
-        if (Input.GetAxis("Vertical") != 0)     //if car isn't sta
+        if (Input.GetAxis("Vertical") != 0)     //if car isn't standing still
             SteerAmount = Input.GetAxis("Horizontal") * SteerSpeed * Time.deltaTime;
 
         transform.Translate(0, MoveAmount, 0);
@@ -58,6 +62,13 @@ public class Driver : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Obstacle") {
+            if (MoveSpeed == BoostSpeed) {
+                HouseExplosionEffect.transform.position = collision.transform.position;
+
+                HouseExplosionEffect.Play();
+                Destroy(collision.gameObject);
+
+            }
             Debug.Log("Slowdown");
             MoveSpeed = SlowSpeed;
             Affected = true;

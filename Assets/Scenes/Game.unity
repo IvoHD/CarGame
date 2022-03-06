@@ -14413,6 +14413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924821316}
   - component: {fileID: 1924821315}
+  - component: {fileID: 1924821322}
   - component: {fileID: 1924821320}
   - component: {fileID: 1924821319}
   - component: {fileID: 1924821318}
@@ -14531,6 +14532,8 @@ MonoBehaviour:
   DefaultColor:
     serializedVersion: 2
     rgba: 4294967295
+  DefaultSpeed: 10.5
+  HouseExplosionEffect: {fileID: 799791169}
 --- !u!114 &1924821320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14547,10 +14550,6 @@ MonoBehaviour:
   MoveSpeed: 10.5
   SlowSpeed: 7.5
   BoostSpeed: 18.5
-  HouseExplosionEffect: {fileID: 799791169}
-  WinEffect: {fileID: 1472684033}
-  Scene:
-    m_Handle: 0
 --- !u!61 &1924821321
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14577,6 +14576,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.82, y: 3.54}
   m_EdgeRadius: 0
+--- !u!114 &1924821322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924821313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f3aaa146585e94381c920ff219fd9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WinEffect: {fileID: 1472684033}
+  Scene:
+    m_Handle: 0
 --- !u!1 &2098476748
 GameObject:
   m_ObjectHideFlags: 0

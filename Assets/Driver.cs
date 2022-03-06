@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Driver : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Driver : MonoBehaviour
     bool Boost; //false = bumped
 
     [SerializeField] ParticleSystem HouseExplosionEffect;
+    [SerializeField] ParticleSystem WinEffect;
+
+    [SerializeField] Scene Scene;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +31,9 @@ public class Driver : MonoBehaviour
     void Update()
     {
         if (GameObject.FindGameObjectsWithTag("Package").Length == 0 && !GetComponent<Collision>().hasPackage) {
-            Debug.Log("Nice, you won the Game!");
+            //Debug.Log("Nice, you won the Game!");
+            Invoke("ReloadScene", 3f);
+            WinEffect.Play();
         }
 
         MoveAmount = Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime;
@@ -74,5 +80,10 @@ public class Driver : MonoBehaviour
             Affected = true;
             Boost = false;
         }
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }

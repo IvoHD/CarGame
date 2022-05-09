@@ -33,8 +33,8 @@ public class Collision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Obstacle") {
-            if (Driver.MoveSpeed == Driver.BoostSpeed) {
+        if (collision.collider.tag == "Obstacle" || collision.collider.tag == "Box") {
+            if (Driver.MoveSpeed == Driver.BoostSpeed && collision.collider.tag != "Box") {
                 HouseExplosionEffect.transform.position = collision.transform.position;
 
                 HouseExplosionEffect.Play();
